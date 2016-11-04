@@ -74,6 +74,6 @@ Server.prototype.processRun =  () => {
 
 
 Server.prototype.serverRun = () => {
-
+    console.log('running...');
 };
 
