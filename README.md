@@ -3,7 +3,7 @@
 ## 启动
 
 ```javascript
-npm start
+npm start   //本地环境,其他环境查看package.json
 ```
 
 
