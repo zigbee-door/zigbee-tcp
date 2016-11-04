@@ -73,8 +73,12 @@ Server.prototype.processRun =  (s) => {
     }
 };
 
-
-
+/**
+ * describe: 启动tcp服务
+ * data:     16.11.04
+ * author:   zhuxiankang
+ * parm:     none
+ */
 Server.prototype.serverRun = () => {
     const net = require('net')
         , server = net.createServer()           //创建tcp服务器
