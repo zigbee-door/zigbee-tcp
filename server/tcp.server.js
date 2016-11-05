@@ -83,7 +83,7 @@ Server.prototype.serverRun = () => {
         , server = net.createServer()           //创建tcp服务器
         , domain = require('domain');
 
-    process.on("uncaughtException",function(err){
+    process.on("uncaughtException",(err) => {
         log.error(log_con.uncaught,err);        //进程未捕获异常日志
     });
 
@@ -99,6 +99,12 @@ Server.prototype.serverRun = () => {
         d.add(socket);                          //绑定socket到domain
 
 
+
+
+
+
+
+
     });
 
 
@@ -107,12 +113,12 @@ Server.prototype.serverRun = () => {
 
         log.server(log_con.server_start,4003);
 
-        server.on('close', () => {              //所有客户端的连接都已经结束，否则不会触发
+        server.on('close', () => {              //所有客户端的连接都已经结束，服务器关闭时触发
             log.server(log_con.server_stop,4003);
         });
 
 
-        server.on('error',function(err){        //服务错误
+        server.on('error',(err) => {            //服务错误
             log.error(log_con.server,err);
         });
     })

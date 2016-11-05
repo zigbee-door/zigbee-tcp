@@ -6,7 +6,7 @@
 npm start   //本地环境,其他环境查看package.json
 ```
 
-## tcp服务
+## 服务
 
 - 端口: `4003`(localhost)
 
@@ -20,3 +20,9 @@ npm start   //本地环境,其他环境查看package.json
 | 错误    |   错误日志 |
 
 >提示: 日志在`log`文件夹下以记事本的形式存储.
+
+
+## 调试
+
+- IDEA
+- node-inspector
