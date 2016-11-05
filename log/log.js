@@ -12,20 +12,23 @@ module.exports = {
      * author:   zhuxiankang
      * parm:     type,worker
      */
-    server(type,worker) {
+    process(type,worker) {
         let time = String(moment().format('YYYY-MM-DD HH:mm:ss')),
-            spath = path.join(__dirname,'/server.log.txt'),
+            spath = path.join(__dirname,'/process.log.txt'),
             text;
 
         switch(type) {
             case log_con.master:
                 text = `[${time}]: 主进程启动...\r\n`;
                 break;
+            case log_con.master_success:
+                text = `[${time}]: 主进程启动监听tcp服务,监听的tcp服务端口号为${worker}...\r\n\r\n`;
+                break;
             case log_con.master_exit:
                 text = `[${time}]: 主进程退出!\r\n\r\n`;
                 break;
             case log_con.worker:
-                text = `[${time}]: 子进程启动...\r\n\r\n`;
+                text = `[${time}]: 子进程启动...\r\n`;
                 break;
             case log_con.worker_reset:
                 text = `[${time}]: 子进程重启,重启进程ID: ${worker.process.pid}!\r\n\r\n`;
@@ -53,10 +56,10 @@ module.exports = {
                 text = `[${time}]: 进程未捕获异常,${err}\r\n`;
                 break;
             case log_con.domain:
-                text = `[${time}]: socket异常,${err}!\r\n\r\n`;
+                text = `[${time}]: socket异常,${err}!\r\n`;
                 break;
-            case log_con.worker:
-                text = `[${time}]: 子进程启动...\r\n\r\n`;
+            case log_con.server:
+                text = `[${time}]: tcp服务异常,${err}\r\n`;
                 break;
             case log_con.worker_reset:
                 text = `[${time}]: 子进程重启,重启进程ID: ${worker.process.pid}!\r\n\r\n`;
@@ -66,7 +69,37 @@ module.exports = {
         }
 
         file.write(spath,text); //写入文件
+    },
+
+    /**
+     * describe: tcp服务日志
+     * data:     16.11.04
+     * author:   zhuxiankang
+     * parm:     type,port
+     */
+    server(type,port) {
+        let time = String(moment().format('YYYY-MM-DD HH:mm:ss')),
+            spath = path.join(__dirname,'/server.log.txt'),
+            text;
+
+        switch(type) {
+            case log_con.server_start:
+                text = `[${time}]: tcp服务启动,监听端口${port}...\r\n`;
+                break;
+            case log_con.server_stop:
+                text = `[${time}]: tcp服务停止监听,端口${port}...\r\n`;
+                break;
+            default:
+                break;
+        }
+
+        file.write(spath,text); //写入文件
+
     }
+
+
+
+
 
 };
 
