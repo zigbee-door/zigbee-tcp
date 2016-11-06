@@ -9,7 +9,7 @@ const pub_con = require('../constants/pub.constant');
 
 
 module.exports = {
-
+    //发布
     base(list) {
         redis.publish(pub_con.base_status,list);
     }
