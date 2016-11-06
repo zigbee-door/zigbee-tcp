@@ -56,7 +56,11 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
     └── socket.pub.js           # 基站连接状况发布
 ```
 
-## 调试
 
-- IDEA
-- node-inspector
+## 进度记录
+
+| 日期      |     进度 |
+| :-------- | :--------|
+| 2016/11/06    |   模拟socket连接和断开成功,redis缓存socket列表,redis发布成功 |
+
+
