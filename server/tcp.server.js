@@ -1,7 +1,7 @@
 
 const cluster = require('cluster')
     , os = require('os')
-    , log = require('../log/log')                       //日志操作
+    , log = require('../log/index.log')                       //日志操作
     , log_con = require('../constants/log.constant');   //日志常量
 
 
@@ -28,7 +28,7 @@ function Server() {}
  */
 Server.prototype.serverInit =   () => {
 
-    require('../config')();     //mongodb,redis配置初始化
+    require('../config/index.config')();     //mongodb,redis配置初始化
 };
 
 
@@ -41,7 +41,7 @@ Server.prototype.serverInit =   () => {
 Server.prototype.processRun =  (s) => {
 
     if(cluster.isMaster) {                      //主进程
-        log.process(log_con.master);             //主进程启动日志
+        log.process(log_con.master);            //主进程启动日志
 
         // let cpus = os.cpus().length;         //MAC OS X默认是4核
         //
@@ -67,7 +67,7 @@ Server.prototype.processRun =  (s) => {
         });
 
     } else {                                    //子进程
-        log.process(log_con.worker);             //子进程启动日志
+        log.process(log_con.worker);            //子进程启动日志
         s.serverRun();                          //启动tcp服务
     }
 };
@@ -80,16 +80,19 @@ Server.prototype.processRun =  (s) => {
  */
 Server.prototype.serverRun = () => {
     const net = require('net')
-        , server = net.createServer()           //创建tcp服务器
-        , domain = require('domain');
+        , server = net.createServer()
+        , domain = require('domain')
+        , base =  require('../models/redis/base.model');  //基站
 
+    /*大部分未知异常处理，包括程序异常*/
     process.on("uncaughtException",(err) => {
         log.error(log_con.uncaught,err);        //进程未捕获异常日志
     });
 
-
-    server.on('connection', (socket) => {       //socket连接(这里可以连接多个socket,每个socket对象都是一个基站连接实例)
-        let d = domain.create();                //捕捉socket异常
+    /*有基站连接tcp服务器*/
+    server.on('connection', (socket) => {
+        let d = domain.create()                 //捕捉socket异常
+          , ip;
 
         d.on('error', err => {
             log.error(log_con.domain,err);      //异常日志
@@ -98,13 +101,46 @@ Server.prototype.serverRun = () => {
 
         d.add(socket);                          //绑定socket到domain
 
+        //console.log(socket.remoteFamily);     //ipv6
+        //ip = socket.remoteAddress.slice(7);   //获取ipv4地址
+
+        base.connect(socket);                   //添加或更新连接的基站(socket)到列表
 
 
+        /*发送FIN包关闭Socket连接*/
+        socket.on('end',() => {
+            base.disconnect(socket);            //更新redis断开socket连接
+            socket.end();
+            if(!socket.destroy){
+                socket.destroy();
+            }
+        });
+
+        /*关闭Socket连接时触发*/
+        socket.on('close', () => {
+            base.disconnect(socket);            //更新redis断开socket连接
+            socket.end();
+        });
 
 
+        /*Socket超时触发*/
+        socket.setTimeout(300000);              //5分钟超时触发，如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是5分钟
 
+        socket.on('timeout',function(){
+            base.disconnect(socket);            //更新redis断开socket连接
+            socket.end();                       //超时断开
+            if(!socket.destroy){
+                socket.destroy();
+            }
+        });
 
-
+        /*错误处理*/
+        socket.on('error',function(){
+            socket.end();
+            if(!socket.destroy){
+                socket.destroy();
+            }
+        });
     });
 
 

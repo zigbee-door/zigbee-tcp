@@ -14,7 +14,7 @@ module.exports = {
      */
     process(type,worker) {
         let time = String(moment().format('YYYY-MM-DD HH:mm:ss')),
-            spath = path.join(__dirname,'/process.log.txt'),
+            spath = path.join(__dirname,'/txt/process.log.txt'),
             text;
 
         switch(type) {
@@ -22,16 +22,16 @@ module.exports = {
                 text = `[${time}]: 主进程启动...\r\n`;
                 break;
             case log_con.master_success:
-                text = `[${time}]: 主进程启动监听tcp服务,监听的tcp服务端口号为${worker}...\r\n\r\n`;
+                text = `[${time}]: 主进程启动监听tcp服务,监听的tcp服务端口号为${worker}...\r\n`;
                 break;
             case log_con.master_exit:
-                text = `[${time}]: 主进程退出!\r\n\r\n`;
+                text = `[${time}]: 主进程退出!\r\n`;
                 break;
             case log_con.worker:
                 text = `[${time}]: 子进程启动...\r\n`;
                 break;
             case log_con.worker_reset:
-                text = `[${time}]: 子进程重启,重启进程ID: ${worker.process.pid}!\r\n\r\n`;
+                text = `[${time}]: 子进程重启,重启进程ID: ${worker.process.pid}!\r\n`;
                 break;
             default:
                 break;
@@ -48,7 +48,7 @@ module.exports = {
      */
     error(type,err) {
         let time = String(moment().format('YYYY-MM-DD HH:mm:ss')),
-            spath = path.join(__dirname,'/error.log.txt'),
+            spath = path.join(__dirname,'/txt/error.log.txt'),
             text;
 
         switch(type) {
@@ -62,7 +62,7 @@ module.exports = {
                 text = `[${time}]: tcp服务异常,${err}\r\n`;
                 break;
             case log_con.worker_reset:
-                text = `[${time}]: 子进程重启,重启进程ID: ${worker.process.pid}!\r\n\r\n`;
+                text = `[${time}]: 子进程重启,重启进程ID: ${worker.process.pid}!\r\n`;
                 break;
             default:
                 break;
@@ -79,7 +79,7 @@ module.exports = {
      */
     server(type,port) {
         let time = String(moment().format('YYYY-MM-DD HH:mm:ss')),
-            spath = path.join(__dirname,'/server.log.txt'),
+            spath = path.join(__dirname,'/txt/server.log.txt'),
             text;
 
         switch(type) {
