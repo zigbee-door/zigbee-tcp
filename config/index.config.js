@@ -19,6 +19,8 @@ module.exports =  () => {
         }
 
         //创建Model
+        require('../server/models/base.model');
+
 
         console.log(`Connect to ${process.env.NODE_ENV} mongodb success!`);
     });

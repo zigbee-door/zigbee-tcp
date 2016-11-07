@@ -1,12 +1,11 @@
 
 const cluster = require('cluster')
     , os = require('os')
-    , log = require('../log/index.log')                       //日志操作
-    , log_con = require('../constants/log.constant');   //日志常量
+    , log = require('./logs/index.log')                //日志操作
+    , log_con = require('./constants/log.constant');   //日志常量
 
 
 exports.createServer =  () => {
-
     let s = new Server();
     s.serverInit();         //服务初始化
     s.processRun(s);        //开启多进程并使用子进程启动tcp服务
@@ -82,7 +81,7 @@ Server.prototype.serverRun = () => {
     const net = require('net')
         , server = net.createServer()
         , domain = require('domain')
-        , base =  require('../models/redis/base.model');  //基站
+        , base =  require('./controllers/base.controller');  //基站
 
     /*大部分未知异常处理，包括程序异常*/
     process.on("uncaughtException",(err) => {
@@ -108,16 +107,16 @@ Server.prototype.serverRun = () => {
 
 
         /*发送FIN包关闭Socket连接*/
-        socket.on('end',() => {
+        socket.on('end',() => {                 //这算是正常关闭
             base.disconnect(socket);            //更新redis断开socket连接
-            socket.end();
+            socket.end();                       //该事件触发的是客户端的end事件
             if(!socket.destroy){
                 socket.destroy();
             }
         });
 
         /*关闭Socket连接时触发*/
-        socket.on('close', () => {
+        socket.on('close', () => {              //这算是非正常关闭,例如直接网线断开连接?
             base.disconnect(socket);            //更新redis断开socket连接
             socket.end();
         });
@@ -127,7 +126,7 @@ Server.prototype.serverRun = () => {
         socket.setTimeout(300000);              //5分钟超时触发，如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是5分钟
 
         socket.on('timeout',function(){
-            base.disconnect(socket);            //更新redis断开socket连接
+            base.disconnect(socket);            //更新mongo断开socket连接
             socket.end();                       //超时断开
             if(!socket.destroy){
                 socket.destroy();
@@ -136,6 +135,7 @@ Server.prototype.serverRun = () => {
 
         /*错误处理*/
         socket.on('error',function(){
+            base.disconnect(socket);            //更新mongo断开socket连接
             socket.end();
             if(!socket.destroy){
                 socket.destroy();

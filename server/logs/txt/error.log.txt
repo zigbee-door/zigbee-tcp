@@ -1,0 +1,45 @@
+[2016-11-04 23:06:55]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-05 10:28:02]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-05 10:28:35]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-06 18:36:37]: 进程未捕获异常,ReferenceError: soket is not defined
+[2016-11-06 18:36:43]: 进程未捕获异常,ReferenceError: soket is not defined
+[2016-11-06 18:37:11]: 进程未捕获异常,ReferenceError: soket is not defined
+[2016-11-06 18:37:13]: 进程未捕获异常,ReferenceError: soket is not defined
+[2016-11-06 19:57:21]: 进程未捕获异常,ReferenceError: ip is not defined
+[2016-11-07 14:15:11]: 进程未捕获异常,ReferenceError: list is not defined
+[2016-11-07 14:18:49]: 进程未捕获异常,ReferenceError: list is not defined
+[2016-11-07 14:23:32]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:23:32]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:24:14]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:24:14]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:24:55]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:24:55]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:26:15]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:26:15]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:26:59]: 进程未捕获异常,Error: connection timeout
+[2016-11-07 14:30:13]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:30:16]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:32:05]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:32:11]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:33:06]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:33:10]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:34:32]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:34:36]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:36:31]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:37:34]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:38:18]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:38:32]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:39:18]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:39:18]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:41:31]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-07 14:41:43]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:41:43]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:42:17]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-07 14:42:21]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:42:21]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:43:02]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-07 14:43:08]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:43:08]: socket异常,ReferenceError: base_con is not defined!
+[2016-11-07 14:45:23]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-07 14:45:45]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-11-07 14:46:30]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
