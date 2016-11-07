@@ -51,5 +51,5 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 | 日期      |     进度 |
 | :-------- | :--------|
 | 2016/11/06    |   模拟socket连接和断开成功,redis缓存socket列表,redis发布成功 |
-
+| 2016/11/07    |   增加基站数据字段 |
 
