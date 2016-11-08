@@ -123,7 +123,7 @@ Server.prototype.serverRun = () => {
 
 
         /*Socket超时触发*/
-        socket.setTimeout(300000);              //5分钟超时触发，如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是5分钟
+        socket.setTimeout(300000);              //(最终控制在1分钟超时触发)5分钟超时触发，如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是5分钟
 
         socket.on('timeout',function(){
             base.disconnect(socket);            //更新mongo断开socket连接
