@@ -14,8 +14,8 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 
 | 名称      |     描述 |
 | :-------- | :--------|
-| redis    |   `redis://localhost:6379`本地环境 |
-| mongodb    |   `mongodb://localhost/zigbee` |
+| redis(本地环境)    |   `redis://localhost:6379` |
+| mongodb(本地环境)  |   `mongodb://localhost/zigbee` |
 
 ## 日志
 
@@ -52,4 +52,5 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 | :-------- | :--------|
 | 2016/11/06    |   模拟socket连接和断开成功,redis缓存socket列表,redis发布成功 |
 | 2016/11/07    |   增加基站数据字段 |
+| 2016/12/07    |   windows环境下重新配置和测试 |
 

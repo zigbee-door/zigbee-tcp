@@ -90,8 +90,7 @@ Server.prototype.serverRun = () => {
 
     /*有基站连接tcp服务器*/
     server.on('connection', (socket) => {
-        let d = domain.create()                 //捕捉socket异常
-          , ip;
+        let d = domain.create();                 //捕捉socket异常
 
         d.on('error', err => {
             log.error(log_con.domain,err);      //异常日志
