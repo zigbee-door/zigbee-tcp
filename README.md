@@ -62,4 +62,5 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 | 2016/11/06    |   模拟socket连接和断开成功,redis缓存socket列表,redis发布成功 |
 | 2016/11/07    |   增加基站数据字段 |
 | 2016/12/07    |   windows环境下重新配置和测试 |
+| 2016/12/27    |   redis订阅成功，通过TCP发送数据给基站成功 |
 
