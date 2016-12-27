@@ -1,4 +1,4 @@
-# zigbee-tcp
+﻿# zigbee-tcp
 
 ## 启动
 
@@ -41,9 +41,18 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 │   ├── logs                    # 日志
 │   ├── models                  # 数据
 │   ├── pubs                    # 发布
+│   ├── subs                    # 订阅
 │   └── server.js               # tcp服务脚本
 └── app.js                      # 启动脚本
 ```
+
+## 问题
+
+| 类型      |    说明  |
+| :-------- | :--------|
+| redis发布和订阅|   redis发布和订阅必须开启两个客户端，同一个客户端不能同时发布和订阅 |
+| redis数据发送   |   发送时需要JSON.stringif()封装，接收使用JSON.parse()解封对象 |
+| 多进程和程序异常捕获   |  最终版本开启，目前开启虽然会产生异常日志，但是日志的说明不是很清楚，还是让程序异常中断查看error，不然不利于编程 |
 
 
 ## 进度记录

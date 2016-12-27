@@ -5,14 +5,13 @@
  * parm:     socket
  */
 
-const pub_con = require('../constants/pub.constant');
+const redis_con = require('../constants/redis.constant');
 
 
 module.exports = {
     //发布
     base(list) {
-        redis.publish(pub_con.base_status,list);
+        redis_pub.publish(redis_con.index,list);
     }
-
 };
 

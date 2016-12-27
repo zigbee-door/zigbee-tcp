@@ -12,13 +12,15 @@ const moment = require('moment')
     , base_pub = require('../pubs/base.pub.js');
 
 module.exports = {
+
     /**
      * describe: 添加新连接的socket或更新已断开连接并重新连接的socket
      * data:     16.11.06
      * author:   zhuxiankang
-     * parm:     socket
+     * parm:     socket -> 连接的socket对象
+     *           socketList -> socket列表
      */
-    connect(socket) {
+    connect(socket,socketList) {
         let Base = mongoose.model(mongo_con.Base);
 
         let base = {
@@ -26,6 +28,11 @@ module.exports = {
             time: String(moment().format('YYYY-MM-DD HH:mm:ss')),
             ip: socket.remoteAddress.slice(7)
         };
+
+        /*临时变量存储*/
+        if(!socketList[socket.remoteAddress.slice(7)]) {   //如果变量列表不存在该socket，加入socket列表对象
+            socketList[socket.remoteAddress.slice(7)] = socket;
+        }
 
         // redis.hmset(list.ip,list);
         co(function* () {                           //mongo数据库存储,此时消耗性能没关系
@@ -48,9 +55,10 @@ module.exports = {
      * describe: 断开socket连接更新redis数据
      * data:     16.11.06
      * author:   zhuxiankang
-     * parm:     socket
+     * parm:     socket -> 连接的socket对象
+     *           socketList -> socket列表
      */
-    disconnect(socket) {
+    disconnect(socket,socketList) {
         let Base = mongoose.model(mongo_con.Base);
 
         let base = {
@@ -58,6 +66,12 @@ module.exports = {
             time: String(moment().format('YYYY-MM-DD HH:mm:ss')),
             ip: socket.remoteAddress.slice(7)
         };
+
+
+        /*临时变量删除*/
+        if(socketList[socket.remoteAddress.slice(7)]) {         //如果对象的属性存在，则删除
+            delete socketList[socket.remoteAddress.slice(7)];
+        }
 
         // redis.hmset(list.ip,list);
 

@@ -10,6 +10,7 @@
     "moment": "^2.15.2",
     "mongoose": "^4.6.6",
     "redis": "^2.6.3",
+    "resolve-from": "^2.0.0",
     "thunkify": "^2.1.2"
   }
 }

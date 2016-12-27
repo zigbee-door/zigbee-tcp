@@ -1,14 +1,17 @@
 
 const cluster = require('cluster')
     , os = require('os')
-    , log = require('./logs/index.log')                //日志操作
-    , log_con = require('./constants/log.constant');   //日志常量
-
+    , log = require('./logs/index.log')                 //日志操作
+    , log_con = require('./constants/log.constant')     //日志常量
+    , base =  require('./controllers/base.controller'); //基站操作
 
 exports.createServer =  () => {
     let s = new Server();
     s.serverInit();         //服务初始化
-    s.processRun(s);        //开启多进程并使用子进程启动tcp服务
+    //这里最终开启，这里先屏蔽
+    //s.processRun(s);        //开启多进程并使用子进程启动tcp服务
+    s.serverRun();          //启动tcp服务,最终打开上面那个，这里因为多进程捕捉了错误，所以错误容易被掩盖
+
 };
 
 /**
@@ -26,7 +29,6 @@ function Server() {}
  * parm:     none
  */
 Server.prototype.serverInit =   () => {
-
     require('../config/index.config')();     //mongodb,redis配置初始化
 };
 
@@ -42,6 +44,8 @@ Server.prototype.processRun =  (s) => {
     if(cluster.isMaster) {                      //主进程
         log.process(log_con.master);            //主进程启动日志
 
+
+        //这里最终开启，这里先屏蔽
         // let cpus = os.cpus().length;         //MAC OS X默认是4核
         //
         // for(let i=0; i<cpus; i++) {
@@ -81,28 +85,51 @@ Server.prototype.serverRun = () => {
     const net = require('net')
         , server = net.createServer()
         , domain = require('domain')
-        , base =  require('./controllers/base.controller');  //基站
+        , socketList = {};              //临时的socket列表对象
+
+    //这里最终开启，这里先屏蔽
 
     /*大部分未知异常处理，包括程序异常*/
-    process.on("uncaughtException",(err) => {
-        log.error(log_con.uncaught,err);        //进程未捕获异常日志
-    });
+    // process.on("uncaughtException",(err) => {
+    //     log.error(log_con.uncaught,err);        //进程未捕获异常日志
+    // });
 
     /*有基站连接tcp服务器*/
     server.on('connection', (socket) => {
-        let d = domain.create();                 //捕捉socket异常
 
-        d.on('error', err => {
-            log.error(log_con.domain,err);      //异常日志
+        //这里最终开启，这里先屏蔽
 
-        });
-
-        d.add(socket);                          //绑定socket到domain
+        // let d = domain.create();                 //捕捉socket异常
+        //
+        // d.on('error', err => {
+        //     log.error(log_con.domain,err);      //异常日志
+        //
+        // });
+        //
+        // d.add(socket);                          //绑定socket到domain
 
         //console.log(socket.remoteFamily);     //ipv6
         //ip = socket.remoteAddress.slice(7);   //获取ipv4地址
 
-        base.connect(socket);                   //添加或更新连接的基站(socket)到列表
+        base.connect(socket,socketList);                   //添加或更新连接的基站(socket)到列表
+
+
+
+        /*Socket超时触发*/
+        socket.setTimeout(1000,() => {
+            console.log('111');
+        });     //先设置5分钟，最终可以使用下面的注释方法
+
+        //基站每隔1s会给一个心跳包，表明基站还活着
+        //如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是3s
+
+        socket.on('timeout',function(){
+            base.disconnect(socket);            //更新mongo断开socket连接
+            socket.end();                       //超时断开
+            if(!socket.destroy){
+                socket.destroy();
+            }
+        });
 
 
         /*发送FIN包关闭Socket连接*/
@@ -114,22 +141,17 @@ Server.prototype.serverRun = () => {
             }
         });
 
+        /*接受基站发送的数据帧时触发*/
+        socket.on('data',function(data){
+
+            //handler.handler['receiveData'].handler(socket,data);
+        });
+
+
         /*关闭Socket连接时触发*/
         socket.on('close', () => {              //这算是非正常关闭,例如直接网线断开连接?
             base.disconnect(socket);            //更新redis断开socket连接
             socket.end();
-        });
-
-
-        /*Socket超时触发*/
-        socket.setTimeout(300000);              //(最终控制在1分钟超时触发)5分钟超时触发，如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是5分钟
-
-        socket.on('timeout',function(){
-            base.disconnect(socket);            //更新mongo断开socket连接
-            socket.end();                       //超时断开
-            if(!socket.destroy){
-                socket.destroy();
-            }
         });
 
         /*错误处理*/
@@ -143,7 +165,7 @@ Server.prototype.serverRun = () => {
     });
 
 
-
+    /*tcp服务器端口监听*/
     server.listen(4003, () => {                 //tcp服务器端口监听
 
         log.server(log_con.server_start,4003);
@@ -156,8 +178,11 @@ Server.prototype.serverRun = () => {
         server.on('error',(err) => {            //服务错误
             log.error(log_con.server,err);
         });
-    })
+    });
 
+
+    /*sub订阅*/
+    require('./subs/doorList.sub')(socketList);     //订阅doorList页面信息
 
 };
 

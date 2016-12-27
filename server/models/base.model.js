@@ -7,7 +7,8 @@
 
 const mongoose = require('mongoose')
     , moment = require('moment')
-    , mongo_con = require('../constants/mongo.constant');
+    , mongo_con = require('../constants/mongo.constant')
+    , co = require('co');
 
 
 var BaseSchema = new mongoose.Schema({

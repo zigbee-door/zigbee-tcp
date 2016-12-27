@@ -43,3 +43,87 @@
 [2016-11-07 14:45:23]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
 [2016-11-07 14:45:45]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
 [2016-11-07 14:46:30]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-09 21:53:34]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-26 21:19:52]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-26 21:22:55]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-26 21:23:56]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-26 21:25:00]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 14:37:39]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 14:37:51]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 14:38:46]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 14:39:06]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 14:51:50]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:01:24]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:05:02]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:05:31]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:53:55]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:55:32]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:58:04]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 15:59:08]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 16:02:09]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:02:52]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:03:34]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:04:17]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:04:39]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:05:34]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 16:11:40]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:13:43]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:14:13]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 16:14:25]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:17:00]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:24:48]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:26:21]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:27:29]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 16:28:03]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:31:55]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:32:42]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:36:55]: 进程未捕获异常,MissingSchemaError: Schema hasn't been registered for model "Base".
+Use mongoose.model(name, schema)
+[2016-12-27 16:39:50]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:40:30]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:41:01]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:42:04]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:53:01]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:53:09]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 16:53:28]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 16:54:53]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 16:54:53]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 16:54:56]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 16:54:59]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 16:55:01]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 16:55:03]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 16:55:21]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 17:49:03]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 17:49:25]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 17:49:39]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 17:54:01]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 17:54:19]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 17:54:35]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:00:01]: 进程未捕获异常,Error: bind EADDRINUSE null:4003
+[2016-12-27 18:04:12]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:04:15]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:05:26]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:05:29]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:06:03]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:06:04]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:08:04]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:08:04]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:09:47]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:11:34]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:11:38]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:12:28]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:13:20]: 进程未捕获异常,ReferenceError: socketList is not defined
+[2016-12-27 18:14:24]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:15:54]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:19:23]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:20:42]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:20:58]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:21:45]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:22:02]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:24:50]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:35:36]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:36:21]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:36:54]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:39:05]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:48:54]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
+[2016-12-27 18:56:35]: socket异常,TypeError: Cannot read property '10.8.208.222' of undefined!
