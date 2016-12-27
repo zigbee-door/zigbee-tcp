@@ -116,15 +116,15 @@ Server.prototype.serverRun = () => {
 
 
         /*Socket超时触发*/
-        socket.setTimeout(1000,() => {
-            console.log('111');
+        socket.setTimeout(300000,() => {        //3分钟判断一次
+            //console.log('111');
         });     //先设置5分钟，最终可以使用下面的注释方法
 
         //基站每隔1s会给一个心跳包，表明基站还活着
         //如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是3s
 
         socket.on('timeout',function(){
-            base.disconnect(socket);            //更新mongo断开socket连接
+            base.disconnect(socket,socketList);            //更新mongo断开socket连接
             socket.end();                       //超时断开
             if(!socket.destroy){
                 socket.destroy();
@@ -133,9 +133,9 @@ Server.prototype.serverRun = () => {
 
 
         /*发送FIN包关闭Socket连接*/
-        socket.on('end',() => {                 //这算是正常关闭
-            base.disconnect(socket);            //更新redis断开socket连接
-            socket.end();                       //该事件触发的是客户端的end事件
+        socket.on('end',() => {                     //这算是正常关闭
+            base.disconnect(socket,socketList);     //更新redis断开socket连接
+            socket.end();                           //该事件触发的是客户端的end事件
             if(!socket.destroy){
                 socket.destroy();
             }
@@ -150,13 +150,13 @@ Server.prototype.serverRun = () => {
 
         /*关闭Socket连接时触发*/
         socket.on('close', () => {              //这算是非正常关闭,例如直接网线断开连接?
-            base.disconnect(socket);            //更新redis断开socket连接
+            base.disconnect(socket,socketList);            //更新redis断开socket连接
             socket.end();
         });
 
         /*错误处理*/
         socket.on('error',function(){
-            base.disconnect(socket);            //更新mongo断开socket连接
+            base.disconnect(socket,socketList);            //更新mongo断开socket连接
             socket.end();
             if(!socket.destroy){
                 socket.destroy();
