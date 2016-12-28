@@ -59,16 +59,19 @@ TcpReceive.prototype.receive = (tcp_data,redis_data) => {
 
                 //如果返回的数据帧正确
                 if(tcp_data[i+6] === F.RESP_OK) {
-                    redis_data.cmd = tcp_data[i+3];                 //命令字
-                    redis_data.doorId = tcp_data.slice(i+4,i+6);    //门锁ID
+                    redis_data.cmd = tcp_data[i+3];                                 //命令字
+                    redis_data.doorId = JSON.stringify(tcp_data.slice(i+4,i+6));    //门锁ID
+                    redis_data.doorId = JSON.parse(redis_data.doorId).data;         //将buffer转化为数组
 
                     if(validLength > F.RECEIVE_MIN_LENG) {        //有数据
-                        redis_data.data = tcp_data.slice(i+7,i+7+validLength-4);  //data数据
+                        redis_data.data = JSON.stringify(tcp_data.slice(i+7,i+7+validLength-4));  //data数据
+                        redis_data.data = JSON.parse(redis_data.data).data;         //将buffer转化为数组
                     } else {
-                        redis_data.data = [];                       //无数据
+                        redis_data.data = [];                                       //无数据
                     }
 
                     console.log('redis_data.data:', redis_data.data);
+                    console.log(redis_data);
 
                     doorList_pub.doorList(redis_data);
 

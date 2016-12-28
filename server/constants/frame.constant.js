@@ -77,5 +77,5 @@ module.exports = {
     //接收到的一完整帧的最小数据长度
     RECEIVE_ALL_MIN_LENG:   0x09,
     //当前拥有的最大命令数，这个需要随命令增加而增加
-    MAX_CMD_NUM:            0x01
+    MAX_CMD_NUM:            0x02
 };
