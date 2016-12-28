@@ -10,8 +10,8 @@ const redis_con = require('../constants/redis.constant');
 
 module.exports = {
     //发布
-    base(list) {
-        redis_pub.publish(redis_con.index,list);
+    base(redis_data) {
+        redis_pub.publish(redis_con.index,redis_data);
     }
 };
 

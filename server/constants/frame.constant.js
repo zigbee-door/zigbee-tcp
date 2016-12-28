@@ -60,11 +60,22 @@
 
 
 module.exports = {
-    //帧数据常数
+    //帧头
     SOP:                    0xAA,
+    //帧尾
     EOP:                    0x0E,
 
-    //发送的最小数据长度
-    SEND_MIN_LENG:          0x03
 
+    //RESP
+    RESP_OK:                0xEE,
+    RESP_NO_DOOR_LIST:      0x20,
+
+    //发送的最小数据长度
+    SEND_MIN_LENG:          0x03,
+    //接收的有效最小数据长度，有效数据长度从FPB_CMD ~ DATA[N]
+    RECEIVE_MIN_LENG:       0x04,
+    //接收到的一完整帧的最小数据长度
+    RECEIVE_ALL_MIN_LENG:   0x09,
+    //当前拥有的最大命令数，这个需要随命令增加而增加
+    MAX_CMD_NUM:            0x01
 };

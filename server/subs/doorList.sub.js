@@ -3,13 +3,14 @@ const tcp = require('../controllers/tcpSend.controller')
 
 module.exports = (socketList) => {
     /*redis订阅http的命令请求*/
-    redis_sub.subscribe(redis_con.doorList);   //订阅doorList.html页面业务doorList频道
+    redis_sub.subscribe(redis_con.doorList_send);   //订阅doorList.html页面发送命令的doorList频道
 
-    redis_sub.on('message', (channel,msg) => {
+    redis_sub.on('message', (channel,redis_data) => {
 
         switch(channel) {
-            case redis_con.doorList:
-                tcp.send(socketList,JSON.parse(msg));   //需要将http发送过来的数据转化为对象
+            //doorList.html向基站寻取关联列表数据
+            case redis_con.doorList_send:
+                tcp.send(socketList,JSON.parse(redis_data));   //需要将http发送过来的数据转化为对象
                 break;
 
             default:

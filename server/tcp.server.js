@@ -85,7 +85,8 @@ Server.prototype.serverRun = () => {
     const net = require('net')
         , server = net.createServer()
         , domain = require('domain')
-        , socketList = {};              //临时的socket列表对象
+        , socketList = {}               //临时的socket列表对象
+        , tcp = require('./controllers/tcpReceive.controller');
 
     //这里最终开启，这里先屏蔽
 
@@ -142,8 +143,11 @@ Server.prototype.serverRun = () => {
         });
 
         /*接受基站发送的数据帧时触发*/
-        socket.on('data',function(data){
-
+        socket.on('data',function(tcp_data){
+            let redis_data = {};
+            redis_data.baseIP = socket.remoteAddress.slice(7);
+            //console.log(data);
+            tcp.receive(tcp_data,redis_data);
             //handler.handler['receiveData'].handler(socket,data);
         });
 
