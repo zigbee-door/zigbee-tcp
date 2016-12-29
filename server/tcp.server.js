@@ -117,7 +117,7 @@ Server.prototype.serverRun = () => {
 
 
         /*Socket超时触发*/
-        socket.setTimeout(300000,() => {        //3分钟判断一次
+        socket.setTimeout(60000,() => {        //暂时设置1min,5分钟判断一次
             //console.log('111');
         });     //先设置5分钟，最终可以使用下面的注释方法
 

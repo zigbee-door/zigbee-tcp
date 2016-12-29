@@ -29,6 +29,17 @@ module.exports = {
             ip: socket.remoteAddress.slice(7)
         };
 
+
+        //这里手动填充一下
+        switch(base.ip) {
+            case '10.8.208.222':
+                base.panId = '0xFFF1';
+                break;
+            case '10.8.208.111':
+                base.panId = '0xFFF2';
+                break;
+        }
+
         /*临时变量存储*/
         if(!socketList[socket.remoteAddress.slice(7)]) {   //如果变量列表不存在该socket，加入socket列表对象
             socketList[socket.remoteAddress.slice(7)] = socket;

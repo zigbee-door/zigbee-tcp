@@ -11,12 +11,61 @@ const mongoose = require('mongoose')
     , co = require('co');
 
 
-var BaseSchema = new mongoose.Schema({
+
+/*基站下的门锁对象*/
+let DoorSchema = new mongoose.Schema({
+    //门锁网络地址
+    shortAddr: {
+        type:Number,
+        default:0x0000      //注意所有的值都给默认值
+    },
+
+    //门锁MAC地址
+    macAddr: {
+        type:Array,
+        default:[]
+    },
+
+    //门锁房间号
+    doorNum: {
+        type:String,
+        default:'未设置'
+    },
+
+    //电池百分比
+    battery: {
+        type:Number,
+        default:0x0000
+    },
+
+    //信号强度
+    lqi: {
+        type:Number,
+        default:0x0000
+    },
+
+    //信息获取时间
+    infoTime: {
+        type:String,
+        default: String(moment().format('YYYY-MM-DD HH:mm:ss'))
+    }
+});
+
+
+
+/*基站对象*/
+let BaseSchema = new mongoose.Schema({
     ip:{            //基站IP
         type:String,
         index:1,
         unique:true,
-        require:true
+        require:true,
+        default:''
+    },
+
+    panId:{
+        type:String,
+        default:''
     },
 
     location:{       //地理位置
@@ -39,9 +88,7 @@ var BaseSchema = new mongoose.Schema({
         require:true
     },
 
-    door_list: {     //门锁列表
-        type:Array
-    }
+    door_list: [DoorSchema]     //门锁列表
 });
 
 
