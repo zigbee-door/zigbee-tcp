@@ -125,7 +125,7 @@ Server.prototype.serverRun = () => {
         //如果套接字处于非活动状态时，服务器发出超时事件之前会等待的时间是3s
 
         socket.on('timeout',function(){
-            base.disconnect(socket,socketList);            //更新mongo断开socket连接
+            base.disconnect(socket,socketList);            //socket列表socketList更新，断开socket连接
             socket.end();                       //超时断开
             if(!socket.destroy){
                 socket.destroy();
@@ -154,13 +154,13 @@ Server.prototype.serverRun = () => {
 
         /*关闭Socket连接时触发*/
         socket.on('close', () => {              //这算是非正常关闭,例如直接网线断开连接?
-            base.disconnect(socket,socketList);            //更新redis断开socket连接
+            base.disconnect(socket,socketList);            //socket列表socketList更新，断开socket连接
             socket.end();
         });
 
         /*错误处理*/
         socket.on('error',function(){
-            base.disconnect(socket,socketList);            //更新mongo断开socket连接
+            base.disconnect(socket,socketList);            //socket列表socketList更新，断开socket连接
             socket.end();
             if(!socket.destroy){
                 socket.destroy();

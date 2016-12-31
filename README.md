@@ -39,7 +39,6 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 │   ├── constants               # 常量
 │   ├── controllers             # 逻辑
 │   ├── logs                    # 日志
-│   ├── models                  # 数据
 │   ├── pubs                    # 发布
 │   ├── subs                    # 订阅
 │   └── server.js               # tcp服务脚本
@@ -65,3 +64,4 @@ npm start   //本地环境,其他环境查看package.json或者config/config.js
 | 2016/12/27    |   redis订阅成功，通过TCP发送数据给基站成功 |
 | 2016/12/28    |   成功解析基站发送的数据帧，并通过redis发布给http服务器，实现了远程开门和获取基站列表数据 |
 | 2016/12/29    |   优化基站的数据结构 |
+| 2016/12/31    |   tcp不应该进行mongodb数据存储，交给http服务器处理 |

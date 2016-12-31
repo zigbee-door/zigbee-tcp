@@ -24,7 +24,8 @@ TcpSend.prototype.send = (socketList,redis_data) => {
     /*-----------------------------------------------------------------------------*/
     /* No.Byte   2byte  1byte 1byte   2byte         nbyte        1byte   1byte     */
     /*-----------------------------------------------------------------------------*/
-    const F = require('../constants/frame.constant');
+    const F = require('../constants/frame.constant')
+        , doorList_pub = require('../pubs/doorList.pub');
 
     let frame = []
         , LRC;
@@ -78,11 +79,9 @@ TcpSend.prototype.send = (socketList,redis_data) => {
     } else {
         //这里暂时不作设置
         console.log('TCP服务检测到基站不存活！');
+        redis_data.data=[0x01,0xFF];
+        doorList_pub.doorList(redis_data);
     }
-
-
-
-
 };
 
 
