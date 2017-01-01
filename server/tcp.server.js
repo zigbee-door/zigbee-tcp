@@ -86,7 +86,8 @@ Server.prototype.serverRun = () => {
         , server = net.createServer()
         , domain = require('domain')
         , socketList = {}               //临时的socket列表对象
-        , tcp = require('./controllers/tcpReceive.controller');
+        , tcp = require('./controllers/tcpReceive.controller')
+        , redis_con = require('./constants/redis.constant');
 
     //这里最终开启，这里先屏蔽
 
@@ -191,9 +192,9 @@ Server.prototype.serverRun = () => {
 
     /*tcp心跳，用于表明tcp进程存活,暂时每隔1s产生一个时间戳,最终时间待定*/
     setInterval(() =>{
-        redis_pub.set('timetamp',new Date().valueOf()); //记录一个时间戳
+        redis_pub.set(redis_con.timetamp,new Date().valueOf()); //记录一个时间戳
         //console.log(global.time);
-    },require('./constants/timetamp.constant').interval)
+    },redis_con.timetampValue);
 
 };
 

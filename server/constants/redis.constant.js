@@ -13,7 +13,9 @@ module.exports = {
     doorList_receive: 'doorList_receive',   //tcp服务发起, 接收来自基站的数据后发送给http服务, doorList_recieve频道
 
 
-
+    //时间戳
+    timetamp: 'timetamp',
+    timetampValue: 1000                     //暂时1s存入一次时间戳
 
 };
 
