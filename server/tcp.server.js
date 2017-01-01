@@ -117,7 +117,7 @@ Server.prototype.serverRun = () => {
 
 
         /*Socket超时触发*/
-        socket.setTimeout(60000,() => {        //暂时设置1min,5分钟判断一次
+        socket.setTimeout(600000,() => {        //暂时设置1min,5分钟判断一次
             //console.log('111');
         });     //先设置5分钟，最终可以使用下面的注释方法
 
@@ -187,6 +187,13 @@ Server.prototype.serverRun = () => {
 
     /*sub订阅*/
     require('./subs/doorList.sub')(socketList);     //订阅doorList页面信息
+
+
+    /*tcp心跳，用于表明tcp进程存活,暂时每隔1s产生一个时间戳,最终时间待定*/
+    setInterval(() =>{
+        redis_pub.set('timetamp',new Date().valueOf()); //记录一个时间戳
+        //console.log(global.time);
+    },require('./constants/timetamp.constant').interval)
 
 };
 

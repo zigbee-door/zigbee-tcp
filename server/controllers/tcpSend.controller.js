@@ -77,17 +77,11 @@ TcpSend.prototype.send = (socketList,redis_data) => {
 
     /*2. 基站不存活*/
     } else {
-        //这里暂时不作设置
         console.log('TCP服务检测到基站不存活！');
         redis_data.data=[0x01,0xFF];
         doorList_pub.doorList(redis_data);
     }
 };
-
-
-
-
-
 
 
 module.exports = new TcpSend();
